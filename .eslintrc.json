@@ -1,15 +1,16 @@
 {
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "es2021": true,
+    "es6": true,
     "react-native/react-native": true,
     "jest/globals": true
   },
   "extends": [
+    "eslint:recommended",
     "plugin:react/recommended",
     "airbnb",
-    "prettier",
-    "stylelint-config-prettier"
+    "prettier"
   ],
   "parserOptions": {
     "ecmaFeatures": {
@@ -20,13 +21,15 @@
   },
   "plugins": ["react", "react-native", "jest"],
   "rules": {
+    //react
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
     // react native
     "react-native/no-unused-styles": 2,
     "react-native/split-platform-components": 2,
     "react-native/no-inline-styles": 2,
     "react-native/no-color-literals": 2,
     "react-native/no-raw-text": 2,
-    "react-native/no-single-element-style-arrays": 2,
     // jest
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",

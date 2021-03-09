@@ -11,7 +11,6 @@
   "dependencies": {
     "expo": "~40.0.0",
     "expo-status-bar": "~1.0.3",
-    "husky": "=4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-40.0.1.tar.gz",
@@ -19,6 +18,7 @@
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.21.0",
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.1.0",
@@ -27,6 +27,8 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
+    "eslint-plugin-react-native": "^3.10.0",
+    "husky": "^4.3.8",
     "jest": "^26.6.3",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
@@ -35,15 +37,16 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "pre-push": "prettier --write"
+      "pre-push": "lint-staged"
     }
   },
   "private": true,
   "lint-staged": {
-    "**/*.js": [
+    "**/*.{js,jsx}": [
       "prettier --write",
       "eslint --cache --fix",
       "jest --bail --findRelatedTests"
-    ]
+    ],
+    "*.{css,md}": "prettier --write"
   }
 }
