@@ -35,9 +35,9 @@ export default function App() {
     Inter_400Regular,
     Inter_300Light,
   });
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState({});
-  const [currentWeather, setCurrentWeather] = useState(0);
+  const [currentWeather, setCurrentWeather] = useState({});
   // connect to api and fetch the current weather
   const fetchWeather = async (coords) => {
     // ? show nearby cities?
@@ -47,9 +47,8 @@ export default function App() {
       )
       .then((res) => {
         // finished loading
-        console.log(res.data.list[0].main.temp);
         // TODO handle null list
-        setCurrentWeather(res.data.list[0]);
+        setCurrentWeather(res.data);
         setLoading(false);
       })
       .catch((e) => {
@@ -93,7 +92,7 @@ Template
   */
 
   // load all fonts
-  if (!fontsLoaded) {
+  if (!fontsLoaded && loading) {
     return <AppLoading />;
   }
   // start app
@@ -102,10 +101,12 @@ Template
   }
   // TODO show error screen
   // show weather components
-  return (
-    <View style={styles.weatherScreenBG}>
-      <WeatherScreen weather={currentWeather} />
-      <StatusBar />
-    </View>
-  );
+  if (!loading) {
+    return (
+      <View style={styles.weatherScreenBG}>
+        <WeatherScreen weather={currentWeather} />
+        <StatusBar />
+      </View>
+    );
+  }
 }
