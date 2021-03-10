@@ -16,6 +16,9 @@ import {
 } from '@expo-google-fonts/inter';
 /* eslint-enable camelcase */
 
+// Components
+import LoadingScreen from './components/LoadingScreen';
+
 /*
 ---------
 Behaviour
@@ -36,6 +39,7 @@ export default function App() {
   const [currentWeather, setCurrentWeather] = useState(0);
   // connect to api and fetch the current weather
   const fetchWeather = async (coords) => {
+    // ? show nearby cities?
     await axios
       .get(
         `http://localhost:5000/current?lat=${coords.latitude}&lon=${coords.longitude}`
@@ -79,17 +83,7 @@ Styles
 ------
   */
 
-  const black = '#aaa';
-
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: black,
-      alignItems: 'center',
-      justifyContent: 'center',
-      fontFamily: 'Inter_300Light',
-    },
-  });
+  const styles = StyleSheet.create({});
 
   /*
 --------
@@ -97,17 +91,14 @@ Template
 --------
   */
 
-  // load fonts
+  // load all fonts
   if (!fontsLoaded) {
     return <AppLoading />;
   }
   // start app
+  // ? add funny loading text?
   if (loading) {
-    return (
-      <View style={styles.container}>
-        <Text>Loading...</Text>
-      </View>
-    );
+    return <LoadingScreen />;
   }
   // show weather components
   return (
