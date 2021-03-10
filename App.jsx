@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import AppLoading from 'expo-app-loading';
@@ -18,6 +18,7 @@ import {
 
 // Components
 import LoadingScreen from './components/LoadingScreen';
+import WeatherScreen from './components/WeatherScreen';
 
 /*
 ---------
@@ -34,7 +35,7 @@ export default function App() {
     Inter_400Regular,
     Inter_300Light,
   });
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState({});
   const [currentWeather, setCurrentWeather] = useState(0);
   // connect to api and fetch the current weather
@@ -96,16 +97,14 @@ Template
     return <AppLoading />;
   }
   // start app
-  // ? add funny loading text?
   if (loading) {
     return <LoadingScreen />;
   }
+  // TODO show error screen
   // show weather components
   return (
-    <View style={styles.container}>
-      <Text>Loading is {loading}.</Text>
-      <Text>Error is {error.message}.</Text>
-      <Text>The current time is {currentWeather.main.temp}.</Text>
+    <View style={styles.weatherScreenBG}>
+      <WeatherScreen weather={currentWeather} />
       <StatusBar />
     </View>
   );

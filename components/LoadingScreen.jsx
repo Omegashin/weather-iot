@@ -15,9 +15,10 @@ const styles = StyleSheet.create({
   },
 });
 
+// ? add funny loading text?
 const LoadingScreen = () => (
   <View style={styles.loadingScreen}>
-    <Text style={styles.loadingText}>Loading...</Text>
+    <Text style={styles.loadingText}>Retrieving the weather...</Text>
   </View>
 );
 
