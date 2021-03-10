@@ -36,7 +36,24 @@ def current_by_coords():
     # get current weather
     # TODO extract all fields
 
-    return response
+    weather = {
+        "cityName": response.get("list")[0].get("name"),
+        "temperature": response.get("list")[0].get("main").get("temp"),
+        "feelsLike": response.get("list")[0].get("main").get("feels_like"),
+        "tempMin": response.get("list")[0].get("main").get("temp_min"),
+        "tempMax": response.get("list")[0].get("main").get("temp_max"),
+        "humidity": response.get("list")[0].get("main").get("humidity"),
+        "cloudiness": response.get("list")[0].get("clouds").get("all"),
+        "rain": response.get("list")[0].get("rain"),
+        "snow": response.get("list")[0].get("snow"),
+        "weatherType": response.get("list")[0].get("weather")[0].get("main"),
+        "weatherDesc": response.get("list")[0]
+        .get("weather")[0]
+        .get("description")
+        .capitalize(),
+    }
+
+    return weather
     # current_temperature = response.get("main", {}).get("temp")
     # if current_temperature:
     #     current_temperature_celsius = round(current_temperature - 273.15, 2)
