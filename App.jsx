@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { StatusBar } from 'expo-status-bar';
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import AppLoading from 'expo-app-loading';
+import { LinearGradient } from 'expo-linear-gradient';
 /* eslint-disable camelcase */
 import {
   useFonts,
@@ -15,6 +16,7 @@ import {
   Inter_300Light,
 } from '@expo-google-fonts/inter';
 /* eslint-enable camelcase */
+import COLORS from './colors';
 
 // Components
 import LoadingScreen from './components/LoadingScreen';
@@ -83,7 +85,11 @@ Styles
 ------
   */
 
-  const styles = StyleSheet.create({});
+  const styles = StyleSheet.create({
+    linearGradient: {
+      flex: 1,
+    },
+  });
 
   /*
 --------
@@ -103,10 +109,13 @@ Template
   // show weather components
   if (!loading) {
     return (
-      <View style={styles.weatherScreenBG}>
+      <LinearGradient
+        colors={[COLORS.sunnyGradientEnd, COLORS.sunnyGradientStart]}
+        style={styles.linearGradient}
+      >
         <WeatherScreen weather={currentWeather} />
         <StatusBar />
-      </View>
+      </LinearGradient>
     );
   }
 }

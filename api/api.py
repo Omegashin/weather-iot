@@ -38,10 +38,10 @@ def current_by_coords():
 
     weather = {
         "cityName": response.get("list")[0].get("name"),
-        "temperature": response.get("list")[0].get("main").get("temp"),
-        "feelsLike": response.get("list")[0].get("main").get("feels_like"),
-        "tempMin": response.get("list")[0].get("main").get("temp_min"),
-        "tempMax": response.get("list")[0].get("main").get("temp_max"),
+        "temperature": round(response.get("list")[0].get("main").get("temp"), 1),
+        "feelsLike": round(response.get("list")[0].get("main").get("feels_like"), 1),
+        "tempMin": round(response.get("list")[0].get("main").get("temp_min"), 1),
+        "tempMax": round(response.get("list")[0].get("main").get("temp_max"), 1),
         "humidity": response.get("list")[0].get("main").get("humidity"),
         "cloudiness": response.get("list")[0].get("clouds").get("all"),
         "rain": response.get("list")[0].get("rain"),

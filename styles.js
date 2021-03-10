@@ -1,12 +1,9 @@
 import { StyleSheet } from 'react-native';
-
-// global colors
-const red = 'green';
+import COLORS from './colors';
 
 export default StyleSheet.create({
-  alwaysred: {
-    backgroundColor: red,
-    height: 100,
-    width: 100,
+  textBlack: {
+    fontFamily: 'Inter_900Black',
+    color: COLORS.white,
   },
 });

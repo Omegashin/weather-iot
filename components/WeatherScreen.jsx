@@ -1,27 +1,30 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
-import COLORS from '../colors';
+import TempPanel from './TempPanel';
+import InfoPanel from './InfoPanel';
 
 const styles = StyleSheet.create({
-  gradientBG: {
-    height: '100vh',
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    overflow: 'hidden',
   },
 });
 
 const WeatherScreen = (props) => {
   const { weather } = props;
   return (
-    <LinearGradient
-      colors={[COLORS.sunnyGradientEnd, COLORS.sunnyGradientStart]}
-      style={styles.gradientBG}
-    >
-      <Text>The current time is {weather.temperature}.</Text>
-      <Text>The current time is {weather.rain}.</Text>
-      <Ionicons name="ios-sunny" size={320} color="white" />
-    </LinearGradient>
+    <View style={styles.container}>
+      <TempPanel
+        style={styles.tempPanel}
+        temperature={weather.temperature}
+        tempMin={weather.tempMin}
+        tempMax={weather.tempMax}
+        feelsLike={weather.feelsLike}
+      />
+      <InfoPanel style={styles.infoPanel} />
+    </View>
   );
 };
 
